@@ -6,6 +6,10 @@ export class UsersController {
     findAll(){
        return []
     }
+    @Get('intern')
+    findIntern(){
+        return []
+    }
     @Get(':id')
     findOne(@Param('id') id: string){
       return{id}
