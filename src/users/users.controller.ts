@@ -8,11 +8,12 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
   @Get()
-  findAll(@Query('role') role?: 'INTERN' | 'ENGENEER' | 'DEVELOPER') {
+  findAll(@Query('role') role?: 'user' | 'Moderator' | 'Admin' | 'editor') {
     return [];
   }
 
