@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Delete } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
@@ -74,7 +74,7 @@ export class UsersService {
       role: 'moderator',
     },
   ];
-  findAll(role?: 'Moderator' | "user" | "editor"|"admin"){
+  findAll(role?: "Moderator" | "user" | "editor"|"admin"){
     if (role){
         const user = this.Users.filter(user => user.role === role)
         return user
@@ -85,5 +85,23 @@ export class UsersService {
   findOne(id:number){
     const user = this.Users.find(user => user.id === id)
     return user
+  }
+  create(user:{firstname :string,lastname :string, email :string, role :"Moderator"| "user" | "editor"|"admin" }){
+    // sort an array from larger id value to lower id value 
+    const userHighestId = [...this.Users].sort((a,b) => b.id - a.id)
+    const newuser = {
+        id: userHighestId[0].id +1,
+        ...user
+    }
+    this.Users.push(newuser)
+    return newuser 
+  }
+  updateuse(id :string, user:{firstname?:string,lastname?:string, email?:string, role :"Moderator"| "user" | "editor"|"admin" }){
+    
+  }
+  Delete(id :number){
+    const removeuser = this.findOne(id)    
+   this.Users = this.Users.filter(user => user.id !== id)
+   return removeuser
   }
 }
