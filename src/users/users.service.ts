@@ -96,8 +96,14 @@ export class UsersService {
     this.Users.push(newuser)
     return newuser 
   }
-  updateuse(id :string, user:{firstname?:string,lastname?:string, email?:string, role :"Moderator"| "user" | "editor"|"admin" }){
-    
+  updateuse(id :number, updateusers:{firstname?:string,lastname?:string, email?:string, role?:"Moderator"| "user" | "editor"|"admin" }){
+     const NewList = this.Users.map(user =>{
+        if (user.id === id){
+          return {...user,...updateusers}
+        }
+        return user
+     })
+     return this.findOne(id)
   }
   Delete(id :number){
     const removeuser = this.findOne(id)    
