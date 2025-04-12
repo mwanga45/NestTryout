@@ -1,6 +1,6 @@
 export  class CreateuserDto {
   firstname: string;
-  Lastname: string;
+  lastname: string;
   email: string;
   role: 'admin' | 'user' | 'editor' | 'moderator';
 }

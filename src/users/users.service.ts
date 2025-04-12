@@ -1,5 +1,6 @@
 import { Injectable, Delete } from '@nestjs/common';
 
+
 @Injectable()
 export class UsersService {
   private Users = [
@@ -86,7 +87,7 @@ export class UsersService {
     const user = this.Users.find(user => user.id === id)
     return user
   }
-  create(user:{firstname :string,lastname :string, email :string, role :"Moderator"| "user" | "editor"|"admin" }){
+  create(user:{firstname :string,lastname :string, email :string, role :"moderator"| "user" | "editor"|"admin" }){
     // sort an array from larger id value to lower id value 
     const userHighestId = [...this.Users].sort((a,b) => b.id - a.id)
     const newuser = {
@@ -96,7 +97,7 @@ export class UsersService {
     this.Users.push(newuser)
     return newuser 
   }
-  updateuse(id :number, updateusers:{firstname?:string,lastname?:string, email?:string, role?:"Moderator"| "user" | "editor"|"admin" }){
+  updateuse(id :number, updateusers:{firstname?:string,lastname?:string, email?:string, role?:"moderator"| "user" | "editor"|"admin" }){
      const NewList = this.Users.map(user =>{
         if (user.id === id){
           return {...user,...updateusers}
