@@ -74,7 +74,7 @@ export class UsersService {
       role: 'moderator',
     },
   ];
-  findAll(role?: "Moderator" | "user" | "editor"|"admin"){
+  findAll(role?: "moderator" | "user" | "editor"|"admin"){
     if (role){
         const user = this.Users.filter(user => user.role === role)
         return user
