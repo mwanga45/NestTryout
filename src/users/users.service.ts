@@ -98,12 +98,14 @@ export class UsersService {
     return newuser 
   }
   updateuse(id :number, updateusers:{firstname?:string,lastname?:string, email?:string, role?:"moderator"| "user" | "editor"|"admin" }){
-     const NewList = this.Users.map(user =>{
+     let Newlist = this.Users.map(user =>{
         if (user.id === id){
           return {...user,...updateusers}
         }
+     
         return user
      })
+     this.Users = Newlist
      return this.findOne(id)
   }
   Delete(id :number){

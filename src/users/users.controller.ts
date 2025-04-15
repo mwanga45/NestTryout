@@ -7,7 +7,8 @@ import {
   Patch,
   Post,
   Query,
-  ParseIntPipe
+  ParseIntPipe,
+  HttpStatus
 } from '@nestjs/common';
 import { CreateuserDto } from './dto/create-user-dto';
 import { Updateusers } from './dto/update-user-dto';
@@ -30,7 +31,7 @@ export class UsersController {
     return this.userService.create(createuserDto);
   }
   @Patch(':id')
-  updateuser(@Param('id', ParseIntPipe) id: number, @Body() updateusers:Updateusers ){
+  updateuser(@Param('id',  ParseIntPipe) id: number, @Body() updateusers:Updateusers ){
     return {
       Message: `user id ${id} updated`,
       updatedata: this.userService.updateuse(id, updateusers),
