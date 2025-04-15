@@ -22,7 +22,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number) {
     return this.userService.findOne(id);
   }
 
@@ -31,14 +31,14 @@ export class UsersController {
     return this.userService.create(createuserDto);
   }
   @Patch(':id')
-  updateuser(@Param('id',  ParseIntPipe) id: number, @Body() updateusers:Updateusers ){
+  updateuser(@Param('id', new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number, @Body() updateusers:Updateusers ){
     return {
       Message: `user id ${id} updated`,
       updatedata: this.userService.updateuse(id, updateusers),
     };
   }
   @Delete(':id')
-  Deleteuser(@Param('id', ParseIntPipe) id: number) {
+  Deleteuser(@Param('id', new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number) {
     return this.userService.Delete(id);
   }
 }
