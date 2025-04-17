@@ -7,7 +7,7 @@ import { Users } from 'src/workers/workers.service';
 export class AuthController {
     constructor(private authService: AuthService) {}
 
-    @Post()
+    @Post('login')
     signin(@Body() authentic:Authentic){
       return this.authService.SignIn(authentic.username,authentic.password)
     }       
